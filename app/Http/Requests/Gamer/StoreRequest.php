@@ -6,6 +6,7 @@ namespace App\Http\Requests\Gamer;
 
 use App\DataObjects\GamerData;
 use App\Enums\Gamer\Gender;
+use App\Enums\Language;
 use App\Http\Requests\FormRequest;
 
 /**
@@ -34,6 +35,19 @@ final class StoreRequest extends FormRequest
             'birthday' => [
                 'required',
                 'date_format:Y.m.d'
+            ],
+            'timezone' => [
+                'required',
+                'timezone:all',
+            ],
+            'languages' => [
+                'required',
+                'array',
+                'min:1',
+            ],
+            'languages.*' => [
+                'required',
+                'enum:' . Language::class,
             ],
         ];
     }

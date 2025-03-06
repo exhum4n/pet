@@ -15,7 +15,7 @@ return new class extends Migration
             $table->enum('role', enum_to_array(UserRole::class));
             $table->enum('status', enum_to_array(UserStatus::class));
             $table->string('password');
-            $table->timestamps();
+            $table->timestampsTz();
         });
     }
 

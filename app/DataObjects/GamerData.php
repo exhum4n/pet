@@ -9,4 +9,6 @@ class GamerData extends DataObject
     public string $username;
     public string $gender;
     public string $birthday;
+    public string $timezone;
+    public array $languages;
 }

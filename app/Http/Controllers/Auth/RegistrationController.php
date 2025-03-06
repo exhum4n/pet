@@ -26,7 +26,7 @@ final class RegistrationController extends Controller
     {
         $this->service->attempt($request->email);
 
-        return response(Code::HTTP_NO_CONTENT);
+        return response(status: Code::HTTP_NO_CONTENT);
     }
 
     /**

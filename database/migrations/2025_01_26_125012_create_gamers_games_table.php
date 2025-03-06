@@ -14,6 +14,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('game_id');
             $table->uuid('gamer_id');
+            $table->boolean('now_playing')->default(true);
 
             $table->unique(['gamer_id', 'game_id']);
 

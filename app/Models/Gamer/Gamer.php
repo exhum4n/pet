@@ -18,6 +18,8 @@ use Illuminate\Support\Collection;
  * @property string $avatar_url
  * @property string $gender
  * @property Carbon $birthday
+ * @property string $timezone
+ * @property array $languages
  *
  * @property Collection<Service> $services
  * @property Collection<Item> $items
@@ -37,6 +39,8 @@ class Gamer extends Model
         'avatar_url',
         'gender',
         'birthday',
+        'timezone',
+        'languages',
     ];
 
     protected $hidden = [
@@ -44,6 +48,10 @@ class Gamer extends Model
         'user_id',
         'created_at',
         'updated_at',
+    ];
+
+    protected $casts = [
+        'languages' => 'array',
     ];
 
     public function services(): HasMany

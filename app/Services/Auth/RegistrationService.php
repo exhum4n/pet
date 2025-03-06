@@ -14,6 +14,7 @@ use App\Repositories\Auth\UserRepository;
 use App\Traits\Users;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Support\Facades\Hash;
 
 class RegistrationService
 {
@@ -56,7 +57,7 @@ class RegistrationService
 
         return $this->users->create([
             'email'  => $email,
-            'password'  => $password,
+            'password'  => Hash::make($password),
             'role' => UserRole::gamer->name,
             'status' => UserStatus::active->name,
         ]);

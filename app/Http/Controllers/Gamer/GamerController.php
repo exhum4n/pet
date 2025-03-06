@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Gamer;
 
 use App\Exceptions\ActionNotAllowed;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Gamer\IndexRequest;
 use App\Http\Requests\Gamer\ShowRequest;
 use App\Http\Requests\Gamer\StoreRequest;
 use App\Http\Resources\Gamer\GamerResource;
@@ -20,9 +21,9 @@ final class GamerController extends Controller
         ]);
     }
 
-    public function index(): GamerResource
+    public function index(IndexRequest $request): GamerResource
     {
-        return new GamerResource($this->service->gamers->getAll());
+        return new GamerResource($this->service->gamers->getList($request->filterData));
     }
 
     public function show(ShowRequest $request): GamerResource

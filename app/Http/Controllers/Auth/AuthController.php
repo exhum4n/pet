@@ -7,10 +7,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Resources\Auth\TokenResource;
+use App\Models\Auth\User;
 use App\Services\Auth\AuthService;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Testing\Fluent\Concerns\Has;
 use Symfony\Component\HttpFoundation\Response as Code;
 
 final class AuthController extends Controller

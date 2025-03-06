@@ -16,6 +16,8 @@ return new class extends Migration
             $table->enum('gender', enum_to_array(Gender::class));
             $table->string('avatar_url')->nullable();
             $table->date('birthday');
+            $table->string('timezone');
+            $table->json('languages');
             $table->timestamps();
         });
     }

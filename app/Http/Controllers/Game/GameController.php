@@ -6,9 +6,11 @@ namespace App\Http\Controllers\Game;
 
 use App\Http\Requests\Game\DestroyRequest;
 use App\Http\Requests\Game\GameRequest;
+use App\Http\Requests\Game\IndexRequest;
 use App\Http\Requests\Game\StoreRequest;
 use App\Http\Requests\Game\UpdateRequest;
 use App\Http\Resources\Game\GameResource;
+use App\Http\Resources\Game\GamesResource;
 use App\Models\Game\Game;
 use App\Services\Game\GameService;
 use App\Http\Controllers\Controller;
@@ -26,21 +28,19 @@ final class GameController extends Controller
         ]);
     }
 
-    public function index(): JsonResource
+    public function index(IndexRequest $request): JsonResource
     {
-        Gate::authorize('index', Game::class);
-
-        return app(GameResource::class, [
-            'resource' => $this->service->games->getAll()
+        return app(GamesResource::class, [
+            'resource' => $this->service->games->getFiltered($request->filterData)
         ]);
     }
 
     public function show(GameRequest $request): JsonResource
     {
-        Gate::authorize('show', $request->game);
-
         return app(GameResource::class, [
-            'resource' => $request->game
+            'resource' => $request->game->with([
+                'servers'
+            ])->get()
         ]);
     }
 

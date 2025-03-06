@@ -8,5 +8,8 @@ use App\DataObjects\DataObject;
 
 class FilterData extends DataObject
 {
-    public string|null $service_id;
+    public string|null $gender;
+    public string|null $timezone = null;
+    public string|null $language = null;
+    public string|null $game = null;
 }

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 final readonly class AuthService
 {
-    public function __construct(public AuthRepository $repository)
+    public function __construct(protected AuthRepository $repository)
     {
     }
 
@@ -57,10 +57,5 @@ final readonly class AuthService
     protected function isPasswordCorrect(string $password, string $hash): bool
     {
         return Hash::check($password, $hash);
-    }
-
-    protected function repository(): string
-    {
-        return AuthRepository::class;
     }
 }

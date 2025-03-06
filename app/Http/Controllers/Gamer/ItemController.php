@@ -12,6 +12,7 @@ use App\Http\Requests\Gamer\Item\IndexRequest;
 use App\Http\Requests\Gamer\Item\StoreRequest;
 use App\Http\Requests\Gamer\Item\UpdateRequest;
 use App\Http\Resources\Gamer\ItemResource;
+use App\Http\Resources\Gamer\ItemsResource;
 use App\Http\Resources\JsonResource;
 use App\Services\Gamer\ItemService;
 use Illuminate\Http\Response;
@@ -26,7 +27,7 @@ final class ItemController extends Controller
 
     public function index(IndexRequest $request): JsonResource
     {
-        return app(ItemResource::class, [
+        return app(ItemsResource::class, [
             'resource' => $request->gamer->items
         ]);
     }

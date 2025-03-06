@@ -24,6 +24,6 @@ class GameRequest extends FormRequest
 
     protected function afterValidation(array $data): void
     {
-        $this->game = app(GameService::class)->games->getById($data['game']);
+        $this->game = app(GameService::class)->games->getByIdOrFail($data['game']);
     }
 }

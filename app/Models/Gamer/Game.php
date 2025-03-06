@@ -9,6 +9,7 @@ use App\Models\Model;
 /**
  * @property string $gamer_id
  * @property string $game_id
+ * @property bool $now_playing
  *
  * @property string $created_at
  */
@@ -19,5 +20,6 @@ class Game extends Model
     protected $fillable = [
         'gamer_id',
         'game_id',
+        'now_playing',
     ];
 }

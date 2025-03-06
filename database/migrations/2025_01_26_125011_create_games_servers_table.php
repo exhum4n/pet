@@ -14,7 +14,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('game_id');
             $table->string('name');
-            $table->date('deleted_at');
+            $table->softDeletes();
 
             $table->unique(['game_id', 'name']);
 

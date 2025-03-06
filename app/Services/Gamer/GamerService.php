@@ -31,6 +31,8 @@ final readonly class GamerService
             'tag' => $this->makeTag(),
             'gender' => $data->gender,
             'birthday' => $data->birthday,
+            'timezone' => $data->timezone,
+            'languages' => $data->languages,
         ]);
     }
 
