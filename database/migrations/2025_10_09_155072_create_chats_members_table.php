@@ -1,30 +1,30 @@
 <?php
 
 use App\Database\Migration;
+use App\Enums\Chat\MemberRole;
 use Illuminate\Database\Schema\Blueprint;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         $this->createTable(function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('chat_id');
             $table->uuid('gamer_id');
-            $table->timestamps();
+            $table->enum('role', enum_to_array(MemberRole::class));
+
+            $table->unique(['chat_id', 'gamer_id']);
 
             $table->foreign('chat_id')
                 ->references('id')
                 ->on('chats.chats')
-                ->cascadeOnDelete();
+                ->onDelete('cascade');
 
             $table->foreign('gamer_id')
                 ->references('id')
                 ->on('gamers.gamers')
-                ->cascadeOnDelete();
+                ->onDelete('cascade');
         });
     }
 

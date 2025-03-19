@@ -10,7 +10,7 @@ use App\Repositories\Auth\AuthRepository;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Support\Facades\Hash;
 
-final readonly class AuthService
+final readonly class AuthService implements AuthServiceInterface
 {
     public function __construct(protected AuthRepository $repository)
     {

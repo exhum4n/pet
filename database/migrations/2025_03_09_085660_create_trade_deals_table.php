@@ -1,6 +1,8 @@
 <?php
 
 use App\Database\Migration;
+use App\Enums\Trade\DealStatus;
+use App\Enums\Trade\OfferStatus;
 use Illuminate\Database\Schema\Blueprint;
 
 return new class extends Migration
@@ -12,26 +14,27 @@ return new class extends Migration
     {
         $this->createTable(function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('chat_id');
-
-            $table->string('type');
-            $table->jsonb('data');
+            $table->uuid('offer_id');
+            $table->enum('status', enum_to_array(DealStatus::class));
+            $table->integer('count');
+            $table->decimal('price');
+            $table->decimal('total_price');
             $table->timestamps();
 
-            $table->foreign('chat_id')
+            $table->foreign('offer_id')
                 ->references('id')
-                ->on('chats.chats')
+                ->on('trade.offers')
                 ->cascadeOnDelete();
         });
     }
 
     protected function name(): string
     {
-        return 'messages';
+        return 'deals';
     }
 
     protected function schema(): string
     {
-        return 'chats';
+        return 'trade';
     }
 };

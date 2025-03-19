@@ -6,7 +6,7 @@ namespace App\Services\Game;
 
 use App\Repositories\Game\GameRepository;
 
-final readonly class GameService
+final readonly class GameService implements GameServiceInterface
 {
     public function __construct(public GameRepository $games)
     {

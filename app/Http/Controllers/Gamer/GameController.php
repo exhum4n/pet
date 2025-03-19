@@ -11,14 +11,14 @@ use App\Http\Requests\Gamer\Game\StoreRequest;
 use App\Http\Resources\Game\GamesResource;
 use App\Http\Resources\Gamer\GameResource;
 use App\Http\Resources\JsonResource;
-use App\Services\Gamer\GameService;
+use App\Services\Gamer\GameServiceInterface;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
 use Symfony\Component\HttpFoundation\Response as Code;
 
 class GameController extends Controller
 {
-    public function __construct(protected GameService $service)
+    public function __construct(protected GameServiceInterface $service)
     {
         $this->middleware('auth:sanctum')->only([
             'index', 'store', 'destroy'

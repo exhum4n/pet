@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid('server_id');
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('category');
+            $table->uuid('category_id');
             $table->integer('count');
             $table->integer('stock');
             $table->integer('price');
@@ -31,6 +31,11 @@ return new class extends Migration
             $table->foreign('server_id')
                 ->references('id')
                 ->on('games.servers')
+                ->cascadeOnDelete();
+
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('games.items_categories')
                 ->cascadeOnDelete();
         });
     }

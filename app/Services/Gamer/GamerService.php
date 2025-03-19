@@ -10,7 +10,7 @@ use App\Models\Gamer\Gamer;
 use App\Repositories\Gamer\GamerRepository;
 use App\Models\Auth\User;
 
-final readonly class GamerService
+final readonly class GamerService implements GamerServiceInterface
 {
     public function __construct(public GamerRepository $gamers)
     {

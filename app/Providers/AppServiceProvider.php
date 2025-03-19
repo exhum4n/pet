@@ -7,8 +7,16 @@ use App\Http\Middlewares\Authenticate;
 use App\Http\Validators\Enum;
 use App\Http\Validators\Uuid;
 use App\Models\Auth\PersonalAccessToken;
+use App\Models\Chat\Chat;
 use App\Models\Gamer\Game as GamerGame;
+use App\Models\Gamer\Item;
+use App\Models\Policies\Chat\ChatPolicy;
 use App\Models\Policies\Gamer\GamePolicy as GamerGamePolicy;
+use App\Models\Policies\Gamer\ItemPolicy;
+use App\Models\Policies\Trade\OfferPolicy;
+use App\Models\Trade\Offer;
+use App\Services\Chat\TokenService;
+use App\Services\Chat\TokenServiceInterface;
 use Illuminate\Auth\Middleware\Authenticate as BaseAuthenticate;
 use Illuminate\Foundation\Exceptions\Handler as BaseHandler;
 use Illuminate\Support\Facades\Gate;
@@ -24,6 +32,7 @@ final class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(BaseAuthenticate::class, Authenticate::class);
+        $this->app->bind(TokenServiceInterface::class, TokenService::class);
     }
 
     /**
@@ -52,5 +61,8 @@ final class AppServiceProvider extends ServiceProvider
     private function definePolicies(): void
     {
         Gate::policy(GamerGame::class, GamerGamePolicy::class);
+        Gate::policy(Offer::class, OfferPolicy::class);
+        Gate::policy(Item::class, ItemPolicy::class);
+        Gate::policy(Chat::class, ChatPolicy::class);
     }
 }

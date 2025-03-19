@@ -15,7 +15,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
-final readonly class PasswordService
+final readonly class PasswordService implements PasswordServiceInterface
 {
     use DispatchesJobs;
     use Users;

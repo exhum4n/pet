@@ -10,7 +10,7 @@ use App\Repositories\Auth\UserRepository;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-final readonly class UserService
+final readonly class UserService implements UserServiceInterface
 {
     public function __construct(public UserRepository $users)
     {

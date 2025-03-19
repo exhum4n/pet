@@ -9,14 +9,14 @@ use App\Http\Requests\Game\Item\Category\DestroyRequest;
 use App\Http\Requests\Game\Item\Category\IndexRequest;
 use App\Http\Requests\Game\Item\Category\StoreRequest;
 use App\Http\Resources\Game\Item\CategoryResource;
-use App\Services\Game\Item\CategoryService;
+use App\Services\Game\Item\CategoryServiceInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Response as Code;
 
 final class CategoryController extends Controller
 {
-    public function __construct(private readonly CategoryService $service)
+    public function __construct(private readonly CategoryServiceInterface $service)
     {
         $this->middleware('auth:sanctum')->only([
             'store', 'destroy',

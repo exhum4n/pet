@@ -6,7 +6,7 @@ namespace App\DataObjects\Gamer;
 
 use App\DataObjects\DataObject;
 
-class FilterData extends DataObject
+class GamerFilter extends DataObject
 {
     public string|null $gender;
     public string|null $timezone = null;

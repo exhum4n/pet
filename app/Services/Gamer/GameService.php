@@ -9,7 +9,7 @@ use App\Models\Game\Game;
 use App\Models\Gamer\Gamer;
 use App\Repositories\Gamer\GameRepository;
 
-final readonly class GameService
+final readonly class GameService implements GameServiceInterface
 {
     public function __construct(public GameRepository $games)
     {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Controllers\Items;
+namespace App\Http\Controllers\Item;
 
 use App\Http\Controllers\Controller;
 

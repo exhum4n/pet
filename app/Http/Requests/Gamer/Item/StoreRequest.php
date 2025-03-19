@@ -7,6 +7,7 @@ namespace App\Http\Requests\Gamer\Item;
 use App\DataObjects\Gamer\ItemData;
 use App\Http\Requests\GamerRequest;
 use App\Models\Game\Item\Category;
+use App\Models\Game\Server;
 
 class StoreRequest extends GamerRequest
 {
@@ -18,6 +19,7 @@ class StoreRequest extends GamerRequest
             'server_id' => [
                 'required',
                 'uuid',
+                'exists:' . Server::class . ',id'
             ],
             'name' => [
                 'required',
@@ -30,17 +32,23 @@ class StoreRequest extends GamerRequest
                 'min:2',
                 'max:255'
             ],
-            'category' => [
+            'category_id' => [
                 'required',
-                'exists:' . Category::class . ',name'
+                'exists:' . Category::class . ',id'
             ],
             'count' => [
                 'required',
                 'numeric',
+                'min:1',
             ],
             'price' => [
                 'required',
                 'numeric',
+            ],
+            'stock' => [
+                'required',
+                'numeric',
+                'min:1',
             ]
         ];
     }

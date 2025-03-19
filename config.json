@@ -1,0 +1,16 @@
+{
+    "token_hmac_secret_key": "f33bd438-191e-472b-9f73-47225f62a841",
+    "admin_secret": "fdeda4a5-e718-4f00-b31f-465dfeafb728",
+    "api_key": "47090533-3be7-447a-aef4-b41dea84d096",
+    "engine": "memory",
+    "allowed_origins": ["*"],
+    "proxy_connect_endpoint": "http://rr/centrifugo/connect/",
+    "port": 8001,
+    "admin": true,
+    "namespaces": [
+        {
+            "name": "personal",
+            "allow_user_limited_channels": true
+        }
+    ]
+}

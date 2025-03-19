@@ -9,7 +9,7 @@ use App\Models\Game\Item\Category;
 use App\Repositories\Game\Item\CategoryRepository;
 use Illuminate\Support\Collection;
 
-final readonly class CategoryService
+final readonly class CategoryService implements CategoryServiceInterface
 {
     public function __construct(public CategoryRepository $categories)
     {

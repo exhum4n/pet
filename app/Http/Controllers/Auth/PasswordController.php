@@ -7,20 +7,16 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Requests\Auth\Password\AttemptRequest;
 use App\Http\Requests\Auth\Password\ChangeRequest;
 use App\Http\Controllers\Controller;
-use App\Services\Auth\PasswordService;
-use Illuminate\Auth\AuthenticationException;
+use App\Services\Auth\PasswordServiceInterface;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Response as Code;
 
 final class PasswordController extends Controller
 {
-    public function __construct(private readonly PasswordService $service)
+    public function __construct(private readonly PasswordServiceInterface $service)
     {
     }
 
-    /**
-     * @throws AuthenticationException
-     */
     public function attempt(AttemptRequest $request): Response
     {
         $this->service->sendRequest($request->email);
@@ -28,9 +24,6 @@ final class PasswordController extends Controller
         return response(Code::HTTP_NO_CONTENT);
     }
 
-    /**
-     * @throws AuthenticationException
-     */
     public function change(ChangeRequest $request): Response
     {
         $this->service->change($request->user, $request->code, $request->password);

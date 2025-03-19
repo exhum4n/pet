@@ -34,6 +34,10 @@ class Game extends Model
         'deleted_at',
     ];
 
+    protected $with = [
+        'servers'
+    ];
+
     public function services(): HasMany
     {
         return $this->hasMany(Service::class);

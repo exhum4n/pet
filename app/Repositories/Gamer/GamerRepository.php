@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Repositories\Gamer;
 
-use App\DataObjects\Gamer\FilterData;
+use App\DataObjects\Gamer\GamerFilter;
 use App\Models\Auth\User;
 use App\Models\Gamer\Gamer;
 use App\Exceptions\EntityNotFoundException;
 use App\Repositories\EloquentRepository;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 class GamerRepository extends EloquentRepository
 {
@@ -31,13 +32,19 @@ class GamerRepository extends EloquentRepository
         return $this->getFirst(['user_id' => $user->id]);
     }
 
-    public function getList(FilterData $filters): LengthAwarePaginator
+    public function getList(?GamerFilter $filters = null): Collection
     {
         $query = $this->getQuery();
 
-        $query->join('gamers.games', 'gamers.games.gamer_id', '=', 'gamers.gamers.id');
+        $query->select('gamers.*');
+
+        if ($filters === null) {
+            return $query->get();
+        }
 
         if ($filters->game !== null) {
+            $query->join('gamers.games', 'gamers.games.gamer_id', '=', 'gamers.gamers.id');
+
             $query->where('gamers.games.game_id', $filters->game);
         }
 
@@ -53,7 +60,7 @@ class GamerRepository extends EloquentRepository
             $query->whereJsonContains('gamers.gamers.languages', $filters->language);
         }
 
-        return $query->paginate();
+        return $query->get();
     }
 
     protected function getModel(): string

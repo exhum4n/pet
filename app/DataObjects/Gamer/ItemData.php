@@ -11,7 +11,8 @@ class ItemData extends DataObject
     public string $server_id;
     public string $name;
     public string $description;
-    public string $category;
+    public string $category_id;
     public int $count;
     public int $price;
+    public int $stock;
 }

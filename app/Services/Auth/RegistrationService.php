@@ -16,7 +16,7 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Support\Facades\Hash;
 
-class RegistrationService
+class RegistrationService implements RegistrationServiceInterface
 {
     use Users;
     use DispatchesJobs;

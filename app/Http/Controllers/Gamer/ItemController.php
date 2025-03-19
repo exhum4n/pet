@@ -14,13 +14,13 @@ use App\Http\Requests\Gamer\Item\UpdateRequest;
 use App\Http\Resources\Gamer\ItemResource;
 use App\Http\Resources\Gamer\ItemsResource;
 use App\Http\Resources\JsonResource;
-use App\Services\Gamer\ItemService;
+use App\Services\Gamer\ItemServiceInterface;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\Response as Code;
 
 final class ItemController extends Controller
 {
-    public function __construct(private readonly ItemService $service)
+    public function __construct(private readonly ItemServiceInterface $service)
     {
         $this->middleware('auth:sanctum');
     }

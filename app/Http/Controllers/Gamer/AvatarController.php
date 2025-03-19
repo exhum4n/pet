@@ -6,12 +6,12 @@ namespace App\Http\Controllers\Gamer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Gamer\Avatar\UpdateRequest;
-use App\Services\Gamer\AvatarService;
+use App\Services\Gamer\AvatarServiceInterface;
 use Illuminate\Http\JsonResponse;
 
 class AvatarController extends Controller
 {
-    public function __construct(private readonly AvatarService $service)
+    public function __construct(private readonly AvatarServiceInterface $service)
     {
         $this->middleware('auth:sanctum');
     }

@@ -12,8 +12,8 @@ use App\Http\Requests\Game\UpdateRequest;
 use App\Http\Resources\Game\GameResource;
 use App\Http\Resources\Game\GamesResource;
 use App\Models\Game\Game;
-use App\Services\Game\GameService;
 use App\Http\Controllers\Controller;
+use App\Services\Game\GameServiceInterface;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Response as Code;
 
 final class GameController extends Controller
 {
-    public function __construct(protected GameService $service)
+    public function __construct(protected GameServiceInterface $service)
     {
         $this->middleware('auth:sanctum')->only([
             'store', 'update', 'destroy'

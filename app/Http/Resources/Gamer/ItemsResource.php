@@ -16,18 +16,6 @@ class ItemsResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
-        return $this->resource->map(function (Item $item) {
-            return [
-                'id' => $item->id,
-                'name' => $item->name,
-                'description' => $item->description,
-                'price' => $item->price,
-                'category' => $item->category,
-                'count' => $item->count,
-                'server' => $item->server->name,
-                'game' => $item->server->game->name,
-                'created_at' => $item->created_at,
-            ];
-        })->groupBy(['game', 'server'])->toArray();
+        return $this->resource->groupBy(['server.game.name', 'server.name', 'category.name'])->toArray();
     }
 }

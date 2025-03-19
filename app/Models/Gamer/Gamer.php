@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Models\Gamer;
 
+use App\Models\Chat\Chat;
+use App\Models\Chat\Member;
 use App\Models\Model;
 use App\Traits\Model\HasFiles;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 
@@ -23,6 +26,7 @@ use Illuminate\Support\Collection;
  *
  * @property Collection<Service> $services
  * @property Collection<Item> $items
+ * @property Collection<Chat> $chats
  */
 class Gamer extends Model
 {
@@ -48,6 +52,7 @@ class Gamer extends Model
         'user_id',
         'created_at',
         'updated_at',
+        'pivot',
     ];
 
     protected $casts = [
@@ -62,6 +67,11 @@ class Gamer extends Model
     public function items(): HasMany
     {
         return $this->hasMany(Item::class);
+    }
+
+    public function chats(): BelongsToMany
+    {
+        return $this->belongsToMany(Chat::class, Member::class);
     }
 
     protected function fileAttributes(): array

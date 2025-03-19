@@ -7,7 +7,7 @@ namespace App\Services\Gamer;
 use App\Models\Gamer\Item;
 use App\Repositories\Gamer\ItemRepository;
 
-final readonly class ItemService
+final readonly class ItemService implements ItemServiceInterface
 {
     public function __construct(public ItemRepository $items)
     {

@@ -64,6 +64,19 @@ services:
                 - ping
             retries: 3
             timeout: 5s
+    centrifugo:
+        image: centrifugo/centrifugo:v5
+        volumes:
+            - ./config.json:/centrifugo/config.json
+        command: centrifugo -c config.json
+        ports:
+            - 8001:8001
+        networks:
+            - sail
+        ulimits:
+            nofile:
+                soft: 65535
+                hard: 65535
 networks:
     sail:
         driver: bridge

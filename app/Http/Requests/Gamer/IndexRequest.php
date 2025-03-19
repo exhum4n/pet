@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests\Gamer;
 
-use App\DataObjects\Gamer\FilterData;
+use App\DataObjects\Gamer\GamerFilter;
 use App\Enums\Gamer\Gender;
 use App\Enums\Language;
 use App\Http\Requests\FormRequest;
@@ -15,7 +15,7 @@ use App\Models\Game\Game;
  */
 class IndexRequest extends FormRequest
 {
-    public FilterData $filterData;
+    public GamerFilter|null $filterData = null;
 
     public function rules(): array
     {
@@ -40,6 +40,8 @@ class IndexRequest extends FormRequest
 
     protected function afterValidation(array $data): void
     {
-        $this->filterData = new FilterData($data['filters']);
+        if (isset($data['filters'])) {
+            $this->filterData = new GamerFilter($data['filters']);
+        }
     }
 }

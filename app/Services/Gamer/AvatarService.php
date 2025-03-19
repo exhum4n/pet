@@ -9,7 +9,7 @@ use App\Repositories\Gamer\GamerRepository;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-final readonly class AvatarService
+final readonly class AvatarService implements AvatarServiceInterface
 {
     public function __construct(private GamerRepository $gamers)
     {

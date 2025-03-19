@@ -10,7 +10,7 @@ use App\Repositories\Game\ServerRepository;
 use App\Exceptions\AlreadyDoneException;
 use Illuminate\Support\Str;
 
-final readonly class ServerService
+final readonly class ServerService implements ServerServiceInterface
 {
     public function __construct(public ServerRepository $servers)
     {
